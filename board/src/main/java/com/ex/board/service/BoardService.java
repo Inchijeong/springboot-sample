@@ -19,7 +19,6 @@ import lombok.AllArgsConstructor;
 public class BoardService {
 	private BoardRepository boardRepository;
 	
-	@Transactional
 	public List<BoardDto> getBoardlist() {
 		List<BoardEntity> boardEntities = boardRepository.findAll();
 		List<BoardDto> boardDtoList = new ArrayList<>();
@@ -39,13 +38,10 @@ public class BoardService {
 		return boardDtoList; 
 	};
 	
-	
-	@Transactional
 	public Long savePost(BoardDto boardDto) {
 		return boardRepository.save(boardDto.toEntity()).getId();
 	}
 	
-	@Transactional
 	public BoardDto getPost(Long id) {
 		Optional<BoardEntity> boardEntityWrapper = boardRepository.findById(id);
 		BoardEntity boardEntity = boardEntityWrapper.get();
@@ -61,7 +57,6 @@ public class BoardService {
 		return boardDTO;
 	}
 	
-	@Transactional
 	public void deletePost(Long id) {
 		boardRepository.deleteById(id);
 	}
