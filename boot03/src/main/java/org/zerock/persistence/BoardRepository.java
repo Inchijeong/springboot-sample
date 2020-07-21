@@ -3,6 +3,8 @@ package org.zerock.persistence;
 import java.util.Collection;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 import org.zerock.domain.Board;
 
@@ -24,5 +26,10 @@ public interface BoardRepository extends CrudRepository<Board, Long>{
 	// title LIKE % ? % AND BNO < ?
 	public Collection<Board> findByTitleContainingAndBnoLessThan(String keyword, Long num);
 	// bno > ? ORDER BY bno DESC
-	public Collection<Board> findByBnoGreaterThanOrderByBnoDesc(Long bno); 
+	public Collection<Board> findByBnoGreaterThanOrderByBnoDesc(Long bno);
+	// bno > ? ORDER BY bno DESC limit ?, ?
+	public List<Board> findByBnoGreaterThanOrderByBnoDesc(Long bno, Pageable paging);
+	public List<Board> findByBnoGreaterThan(Long bno, Pageable paging);
+	// Spring MVC와 연동할때 편리함
+	public Page<Board> findByBnoLessThan(Long bno, Pageable paging);
 }

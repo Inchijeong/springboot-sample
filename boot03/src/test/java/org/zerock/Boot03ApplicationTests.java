@@ -7,6 +7,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.zerock.domain.Board;
 import org.zerock.persistence.BoardRepository;
@@ -94,6 +98,47 @@ class Boot03ApplicationTests {
 		Collection<Board> results = repo.findByBnoGreaterThanOrderByBnoDesc(50L);
 		
 		results.forEach(board -> System.out.println(board));
+	}
+	
+	@Test
+	public void testBnoOrderByPaging() {
+		
+//		Pageable paging = new PageRequest(0, 10);
+		Pageable paging = PageRequest.of(0, 10);
+		
+		Collection<Board> results = repo.findByBnoGreaterThanOrderByBnoDesc(0L, paging);
+		
+		results.forEach(board -> System.out.println(board));
+	}
+	
+	@Test
+	public void testBnoGreaterPagingSort() {
+		
+//		Pageable paging = new PageRequest(0, 10, Sort.Direction.ASC, "bno");
+		Pageable paging = PageRequest.of(0, 10, Sort.Direction.ASC, "bno");
+		
+		Collection<Board> results = repo.findByBnoGreaterThan(0L, paging);
+		
+		results.forEach(board -> System.out.println(board));
+	}
+
+	@Test
+	public void testBnoLessPagingSort() {
+		
+//		Pageable paging = new PageRequest(0, 20, Sort.Direction.ASC, "bno");
+		Pageable paging = PageRequest.of(0, 20, Sort.Direction.ASC, "bno");
+		
+		Page<Board> result = repo.findByBnoLessThan(100L, paging);
+		
+		System.out.println("PAGE SIZE: " + result.getSize());
+		System.out.println("TOTAL SIZE: " + result.getTotalPages());
+		System.out.println("TOTAL COUNT: " + result.getTotalElements());
+		System.out.println("NEXT: " + result.getPageable());
+		
+		
+		List<Board> list = result.getContent();
+		
+		list.forEach(board -> System.out.println(board));
 	}
 	
 	@Test
