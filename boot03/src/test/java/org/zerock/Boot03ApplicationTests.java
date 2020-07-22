@@ -142,6 +142,24 @@ class Boot03ApplicationTests {
 	}
 	
 	@Test
+	public void testByTitle() {
+		
+		repo.findByTitle("17").forEach(board -> System.out.println(board));
+	}
+
+	@Test
+	public void testByContent() {
+		
+		repo.findByContent("17").forEach(board -> System.out.println(board));
+	}
+
+	@Test
+	public void testEntityByContent() {
+		
+		repo.findEntityByWriter("17").forEach(board -> System.out.println(board));
+	}
+	
+	@Test
 	void contextLoads() {
 	}
 

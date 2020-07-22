@@ -5,7 +5,9 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.zerock.domain.Board;
 
 public interface BoardRepository extends CrudRepository<Board, Long>{
@@ -32,4 +34,13 @@ public interface BoardRepository extends CrudRepository<Board, Long>{
 	public List<Board> findByBnoGreaterThan(Long bno, Pageable paging);
 	// Spring MVC와 연동할때 편리함
 	public Page<Board> findByBnoLessThan(Long bno, Pageable paging);
+	
+	// 쿼리 안에서 테이블명을 엔티티로 사용	
+	@Query("SELECT b FROM Board b WHERE b.title LiKE %?1% AND b.bno > 0 ORDER BY b.bno DESC")
+	public List<Board> findByTitle(String title);
+	@Query("SELECT b FROM Board b WHERE b.content LiKE %:content% AND b.bno > 0 ORDER BY b.bno DESC")
+	public List<Board> findByContent(@Param("content") String content);
+	// #{#entityName} 
+	@Query("SELECT b FROM #{#entityName} b WHERE b.writer LIKE %?1% AND b.bno > 0 ORDER BY b.bno DESC")
+	public List<Board> findEntityByWriter(String writer);
 }
