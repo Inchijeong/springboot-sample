@@ -33,5 +33,5 @@ public class Board {
 	private Timestamp regdate; // LocalDateTime
 	@UpdateTimestamp
 	private Timestamp updatedate; // LocalDateTime
-	
+
 }
