@@ -1,5 +1,6 @@
 package org.zerock;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
@@ -10,6 +11,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.zerock.domain.FreeBoard;
@@ -78,6 +82,40 @@ public class FreeBoardTests {
 			
 			boardRepo.save(board);
 		});
+	}
+	
+	@Test
+	public void testList1() {
+		
+		Pageable page = PageRequest.of(0, 10, Sort.Direction.DESC, "bno");
+		
+		boardRepo.findByBnoGreaterThan(0L, page).forEach(board ->{
+			
+			log.info(board.getBno() + ": " + board.getTitle());
+		});		
+	}
+	
+	@Transactional
+	@Test
+	public void testList2() {
+		
+		Pageable page = PageRequest.of(0, 10, Sort.Direction.DESC, "bno");
+		
+		boardRepo.findByBnoGreaterThan(0L, page).forEach(board ->{
+			
+			log.info(board.getBno() + ": " 
+					+ board.getTitle() + ": " 
+					+ board.getReplies().size());
+			
+		});
+	}
+	
+	@Test
+	public void testList3() {
+		
+		Pageable page = PageRequest.of(0, 10, Sort.Direction.DESC, "bno");
+		
+		boardRepo.getPage(page).forEach(arr -> log.info(Arrays.toString(arr)));
 	}
 }
 

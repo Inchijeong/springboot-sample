@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -39,6 +40,9 @@ public class FreeBoard {
 	@UpdateTimestamp
 	private Timestamp updatedate;
 	
-	@OneToMany(mappedBy="board", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="board"
+			, cascade=CascadeType.ALL
+//			, fetch=FetchType.EAGER // 성능에 악영향이 있을 수 있음
+			, fetch=FetchType.LAZY) // 기본값이 LAZY이므로 생략 가능
 	private List<FreeBoardReply> replies;
 }
