@@ -2,18 +2,37 @@
 <html xmls:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<title></title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<link rel="apple-touch-icon" href="apple-touch-icon.png">
+		<!-- Place favicon.ico in the root directory -->
+		
+		<link rel="stylesheet" th:href="@{/css/normalize.css}">
+		<link rel="stylesheet" th:href="@{/css/main.css}">
+		<script th:src="@{/js/vendor/modernizr-3.11.2.min.js}"></script>
+	</head>
+
 	<body>
 	
 		<!-- content body -->
-		<div>
+		<!-- 실제로 보이는 영역 -->
+		<div layout:fragment="content">
 		
 		</div>
 		
 		
 		<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-		<script src="js/main.js"></script>
+		<script>window.jQuery || document.write('<script th:src="@{/js/vendor/jquery-1.12.0.min.js}"><\/script>')</script>
+		<script th:src="@{/js/plugins.js}"></script>
+		<script th:src="@{/js/main.js}"></script>
 		
 		<!-- custom javascript -->
-		<script></script>
+		<!-- 아무런 태그가 없는 영역 -->
+		<th:block layout:fragment="script"></th:block>
 	</body>
 </html>

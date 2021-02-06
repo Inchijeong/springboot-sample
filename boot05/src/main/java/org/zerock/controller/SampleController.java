@@ -100,4 +100,10 @@ public class SampleController {
 	public void sample9(Model model) {
 		
 	}
+	
+	@GetMapping("/sample/hello")
+	public void hello() {
+		
+	}
+	
 }
