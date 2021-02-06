@@ -19,7 +19,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @Entity
-@Table(name="tb1_boards")
+@Table(name="tbl_boards")
 public class Board {
 	
 	@Id
