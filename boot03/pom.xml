@@ -59,12 +59,12 @@
 		<dependency>
 		    <groupId>com.querydsl</groupId>
 		    <artifactId>querydsl-apt</artifactId>
-		    </dependency>
+	    </dependency>
 		<!-- https://mvnrepository.com/artifact/com.querydsl/querydsl-jpa -->
 		<dependency>
 		    <groupId>com.querydsl</groupId>
 		    <artifactId>querydsl-jpa</artifactId>
-		    </dependency>		
+	    </dependency>
 	</dependencies>
 
 	<build>
