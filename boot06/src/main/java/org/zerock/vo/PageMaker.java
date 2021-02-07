@@ -48,7 +48,7 @@ public class PageMaker<T> {
 		for(int i = startNum; i < this.currentPageNum; i++) {
 			startPage = startPage.previousOrFirst();
 		}
-		this.prevPage = startPage.getPageNumber() <= 0? null : startPage.previousOrFirst();
+		this.prevPage = startPage.getPageNumber() <= 0 ? null : startPage.previousOrFirst();
 		
 		if(this.totalPageNum < tempEndNum) {
 			tempEndNum = this.totalPageNum;
@@ -59,10 +59,10 @@ public class PageMaker<T> {
 			pageList.add(startPage);
 			startPage = startPage.next();
 		}
-		this.nextPage = startPage.getPageNumber() + 1 < totalPageNum ? startPage: null;
+		this.nextPage = startPage.getPageNumber() + 1 < totalPageNum ? startPage : null;
 	}
 }
-
+                                                                             
 
 
 
