@@ -75,6 +75,13 @@
 				formObj.submit();
 			});
 			
+			$('.modbtn').click(function(){
+				
+				formObj.attr("action", "modify");
+				formObj.attr("method", "post");
+				formObj.submit();
+			});			
+			
 		});
 	
 	</script>
