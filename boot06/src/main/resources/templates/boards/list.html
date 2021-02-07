@@ -5,6 +5,11 @@
 <div layout:fragment="content">
 
 	<div class="panel-heading">List Page</div>
+	
+	<div class="panel-body pull-right">
+		<h3><a class="label label-default" th:href="@{register}">Register</a></h3>
+	</div>
+	
 	<div class="panel-body">
 	
 		<div th:with="result=${result.result}">
@@ -76,10 +81,12 @@
 
 	<script th:inline="javascript">
 	
+	
 		$(document).ready(function(){
 			
 			var formObj = $("#f1");
 			
+			// 페이지 번호 버튼
 			$(".pagination a").click(function(e){
 				
 				e.preventDefault();
@@ -89,6 +96,7 @@
 				formObj.submit();
 			});
 			
+			// 검색 버튼
 			$("#searchBtn").click(function(e){
 				
 				var typeStr = $("#searchType").find(":selected").val();
@@ -102,6 +110,17 @@
 				formObj.submit();
 			});
 			
+		});
+		
+		// 글 등록 이후
+		$(window).load(function(){
+			
+			var msg = [[${msg}]];
+			
+			if(msg == 'success'){
+				alert("정상적으로 처리되었습니다.");
+				var stateBoj = { msg: "" };
+			}
 		});
 	
 	</script>
