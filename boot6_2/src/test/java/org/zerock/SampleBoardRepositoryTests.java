@@ -1,5 +1,8 @@
 package org.zerock;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +52,18 @@ public class SampleBoardRepositoryTests {
 		
 		log.info("------------------------------");
 		result.getContent().forEach(board -> log.info(""+ board));
+		
+	}
+	
+	@Test
+	public void testList3() {
+		
+		Pageable pageable = PageRequest.of(0, 10, Direction.DESC, "bno");
+		
+		List<Object[]> list = repo.getListWithQuery(pageable);
+		
+		log.info("------------------------------");
+		list.forEach(arr -> log.info(Arrays.toString(arr)));
 		
 	}
 }
