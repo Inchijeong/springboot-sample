@@ -60,7 +60,7 @@ public class SampleBoardRepositoryTests {
 		
 		Pageable pageable = PageRequest.of(0, 10, Direction.DESC, "bno");
 		
-		List<Object[]> list = repo.getListWithQuery(pageable);
+		List<Object[]> list = repo.getListWithAll(pageable);
 		
 		log.info("------------------------------");
 		list.forEach(arr -> log.info(Arrays.toString(arr)));
