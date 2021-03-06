@@ -5,10 +5,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import com.td.domain.BaseTimeEntity;
+import com.td.domain.BaseTime;
 import com.td.domain.Todo;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,7 +17,7 @@ import lombok.ToString;
 @Getter
 @ToString
 @NoArgsConstructor
-public class TodoDTO extends BaseTimeEntity{
+public class TodoDto extends BaseTime{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,7 +29,7 @@ public class TodoDTO extends BaseTimeEntity{
 	@Column(columnDefinition = "TEXT", nullable = false)
 	private String content;
 	
-	public TodoDTO(Todo todo) {
+	public TodoDto(Todo todo) {
 		this.id = todo.getId();
 		this.title = todo.getTitle();
 		this.content = todo.getContent();

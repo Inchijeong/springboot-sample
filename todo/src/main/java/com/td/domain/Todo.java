@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.td.dto.TodoDto;
+
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "todo")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Todo extends BaseTimeEntity{
+public class Todo extends BaseTime{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,5 +35,12 @@ public class Todo extends BaseTimeEntity{
 		this.id = id;
 		this.title = title;
 		this.content = content;
+	}
+	
+	@Builder
+	public Todo(TodoDto dto) {
+		this.id = dto.getId();
+		this.title = dto.getTitle();
+		this.content = dto.getContent();
 	}
 }

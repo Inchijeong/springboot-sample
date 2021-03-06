@@ -5,7 +5,8 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import com.td.dto.TodoDTO;
+import com.td.domain.Todo;
+import com.td.dto.TodoDto;
 import com.td.repository.TodoRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -16,10 +17,10 @@ public class TodoService {
 
 	private final TodoRepository todoRepository;
 	
-	public List<TodoDTO> getTodoList() {
+	public List<TodoDto> getTodoList() {		
 		return todoRepository.findAll()
 				.stream()
-				.map(TodoDTO::new)
+				.map(TodoDto::new)
 				.collect(Collectors.toList());
 	}
 }
